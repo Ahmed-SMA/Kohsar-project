@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="duo">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kohsar Commercial Plaza | Architect Brief</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --cream:#f5ead9;
+      --cream2:#fff8ed;
+      --ink:#15110e;
+      --ink2:#2b2119;
+      --dark:#080706;
+      --dark2:#14100d;
+      --panel:#17120e;
+      --brown:#5b3924;
+      --brown2:#8b6238;
+      --gold:#c79a55;
+      --gold2:#e8c684;
+      --green:#678d58;
+      --line:rgba(255,255,255,.15);
+      --lineDark:rgba(70,44,24,.16);
+      --shadow:0 28px 90px rgba(0,0,0,.24);
+      --radius:28px;
+    }
+
+    html[data-theme="duo"]{
+      --pageA:#0a0806; --pageB:#f3e6d4;
+      --surface:#15100d; --surfaceSoft:rgba(255,255,255,.055);
+      --text:#fff8ea; --muted:#d4c2ac;
+      --inverse:#1d1712; --inverseMuted:#6d5d4e;
+      --cardBg:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.035));
+      --cardLine:rgba(255,255,255,.13);
+      --navBg:rgba(10,8,6,.74);
+      --accentText:#f4d49b;
+    }
+    html[data-theme="dark"]{
+      --pageA:#050403; --pageB:#0f0a07;
+      --surface:#130e0a; --surfaceSoft:rgba(255,255,255,.052);
+      --text:#fff8ea; --muted:#cbb7a0;
+      --inverse:#fff8ea; --inverseMuted:#cbb7a0;
+      --cardBg:linear-gradient(145deg,rgba(255,255,255,.085),rgba(255,255,255,.03));
+      --cardLine:rgba(255,255,255,.12);
+      --navBg:rgba(6,5,4,.84);
+      --accentText:#f2cf91;
+    }
+    html[data-theme="light"]{
+      --pageA:#f2e4d2; --pageB:#fff8ed;
+      --surface:#fff7eb; --surfaceSoft:rgba(92,57,32,.055);
+      --text:#1d1712; --muted:#625448;
+      --inverse:#1d1712; --inverseMuted:#625448;
+      --cardBg:linear-gradient(145deg,rgba(255,255,255,.9),rgba(255,247,235,.74));
+      --cardLine:rgba(88,56,32,.16);
+      --navBg:rgba(255,248,237,.84);
+      --accentText:#7b4f28;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Manrope,system-ui,-apple-system,Segoe UI,sans-serif;
+      color:var(--text);
+      background:linear-gradient(135deg,var(--pageA) 0 49.8%,var(--pageB) 49.9% 100%);
+      min-height:100vh;
+      overflow-x:hidden;
+      letter-spacing:.018em;
+    }
+    body::before{
+      content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;opacity:.14;
+      background-image:
+        linear-gradient(30deg,transparent 0 47%,rgba(199,154,85,.22) 48%,transparent 49%),
+        linear-gradient(120deg,transparent 0 45%,rgba(255,255,255,.18) 46%,transparent 47%),
+        linear-gradient(rgba(199,154,85,.12) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(199,154,85,.12) 1px,transparent 1px);
+      background-size:520px 520px,460px 460px,82px 82px,82px 82px;
+      mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.65) 62%,transparent 100%);
+    }
+    body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.08;background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="2" stitchTiles="stitch"/></filter><rect width="180" height="180" filter="url(%23n)" opacity="0.45"/></svg>')}
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1220px,calc(100% - 40px));margin:0 auto}
+
+    .nav{
+      position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:90;
+      width:min(1220px,calc(100% - 40px));display:flex;align-items:center;justify-content:space-between;gap:16px;
+      padding:10px 12px 10px 14px;border:1px solid var(--cardLine);border-radius:22px;background:var(--navBg);backdrop-filter:blur(18px) saturate(135%);box-shadow:0 18px 55px rgba(0,0,0,.2)
+    }
+    .brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:12px;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;color:var(--text)}
+    .logoMark{width:36px;height:36px;border-radius:13px;border:1px solid rgba(199,154,85,.5);display:grid;place-items:center;background:linear-gradient(135deg,rgba(199,154,85,.28),rgba(255,255,255,.06))}
+    .logoMark svg{width:20px;height:20px;stroke:var(--gold2)}
+    .links{display:flex;gap:4px;align-items:center;justify-content:flex-end;flex-wrap:wrap}
+    .links a,.toneTrigger{font:800 11px/1 Manrope;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);padding:10px 11px;border-radius:999px;transition:.25s ease;border:0;background:transparent;cursor:pointer}
+    .links a:hover,.toneTrigger:hover{color:var(--text);background:rgba(199,154,85,.16);transform:translateY(-1px)}
+    .toneMenu{position:relative}
+    .toneDropdown{position:absolute;right:0;top:calc(100% + 12px);width:230px;padding:8px;border:1px solid var(--cardLine);border-radius:18px;background:var(--navBg);backdrop-filter:blur(18px);box-shadow:var(--shadow);opacity:0;transform:translateY(-8px) scale(.98);pointer-events:none;transition:.22s ease;transform-origin:top right}
+    .toneMenu.is-open .toneDropdown{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+    .toneOption{width:100%;text-align:left;padding:12px;border-radius:13px;border:0;background:transparent;color:var(--text);font:800 12px/1.2 Manrope;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .toneOption small{font-weight:500;color:var(--muted);font-size:10px;letter-spacing:.02em;text-transform:none}
+    .toneOption:hover,.toneOption.active{background:rgba(199,154,85,.18)}
+
+    .hero{min-height:100vh;position:relative;display:grid;align-items:end;overflow:hidden;padding:128px 0 54px}
+    .heroBg{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,4,3,.92) 0%,rgba(5,4,3,.72) 29%,rgba(5,4,3,.26) 60%,rgba(5,4,3,.48) 100%),linear-gradient(0deg,rgba(5,4,3,.88) 0%,rgba(5,4,3,.24) 44%,rgba(5,4,3,.15) 100%),url('./hero.png') center 49%/cover no-repeat;transform:scale(1.08);will-change:transform;z-index:-4;filter:saturate(.9) contrast(.98) brightness(.76)}
+    .hero::before{content:"";position:absolute;inset:0;z-index:-3;pointer-events:none;background:radial-gradient(circle at 13% 23%,rgba(199,154,85,.32),transparent 32%),linear-gradient(115deg,rgba(0,0,0,.62),transparent 47%)}
+    .heroFrame{position:absolute;inset:94px 22px 24px 22px;border:1px solid rgba(255,255,255,.16);border-radius:34px;z-index:-2;pointer-events:none;background:linear-gradient(130deg,rgba(255,255,255,.04),transparent 34%,rgba(199,154,85,.06))}
+    .cloudFrame{position:absolute;inset:auto -12% -15% -12%;height:50%;z-index:-1;pointer-events:none;opacity:.46;background:radial-gradient(ellipse at 12% 60%,rgba(255,255,255,.28),transparent 34%),radial-gradient(ellipse at 42% 72%,rgba(255,255,255,.2),transparent 38%),radial-gradient(ellipse at 78% 56%,rgba(255,255,255,.23),transparent 35%);filter:blur(31px);animation:cloudFloat 9s ease-in-out infinite alternate}
+    @keyframes cloudFloat{from{transform:translateX(-2%) translateY(3%)}to{transform:translateX(2%) translateY(-3%)}}
+    .heroContent{display:grid;grid-template-columns:minmax(0,1.06fr) 390px;gap:32px;align-items:end}
+    .kicker{display:inline-flex;align-items:center;gap:10px;padding:9px 14px;border-radius:999px;border:1px solid rgba(241,215,166,.36);background:rgba(10,7,5,.48);backdrop-filter:blur(12px);color:#f2d295;font:900 11px/1 Manrope;letter-spacing:.18em;text-transform:uppercase;width:max-content}
+    h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(56px,8vw,116px);line-height:.82;letter-spacing:-.07em;margin:24px 0 22px;color:#fff9eb;text-shadow:0 18px 48px rgba(0,0,0,.62);text-wrap:balance}
+    h1 span{display:block;color:#e0ba78}
+    .lead{max-width:770px;color:rgba(255,248,235,.9);font-size:clamp(16px,1.45vw,20px);line-height:1.86;font-weight:400;text-shadow:0 8px 32px rgba(0,0,0,.72);letter-spacing:.022em}
+    .heroActions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:15px 18px;border-radius:16px;border:1px solid rgba(255,255,255,.2);font:900 12px/1 Manrope;letter-spacing:.1em;text-transform:uppercase;transition:.25s ease;backdrop-filter:blur(12px)}
+    .btn.primary{background:linear-gradient(135deg,#e2bd7b,#8b6336);color:#15100a;box-shadow:0 18px 45px rgba(199,154,85,.3)}
+    .btn.secondary{background:rgba(0,0,0,.38);color:#fff}
+    .btn:hover{transform:translateY(-3px)}
+    .heroPanel{border:1px solid rgba(255,255,255,.2);border-radius:28px;padding:20px;background:linear-gradient(145deg,rgba(9,6,4,.78),rgba(9,6,4,.46));backdrop-filter:blur(16px);box-shadow:var(--shadow)}
+    .panelTitle{font:900 11px Manrope;letter-spacing:.16em;text-transform:uppercase;color:#f2d295;margin-bottom:14px}
+    .snapGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.snap{padding:15px;border-radius:18px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.075)}.snap b{font-size:25px;color:white;display:block;letter-spacing:-.02em}.snap span{font-size:11px;color:rgba(255,248,235,.72)}
+
+    .section{padding:86px 0;position:relative;color:var(--text)}
+    .section.lightPanel{background:rgba(255,248,237,.78);color:#1d1712}
+    html[data-theme="dark"] .section.lightPanel{background:rgba(255,255,255,.035);color:var(--text)}
+    html[data-theme="light"] .section.lightPanel{background:rgba(255,255,255,.38);color:var(--text)}
+    .section.darkPanel{background:rgba(8,7,6,.7);color:#fff8ea}
+    html[data-theme="light"] .section.darkPanel{background:rgba(86,55,31,.08);color:var(--text)}
+    .sectionHead{display:grid;grid-template-columns:minmax(0,.83fr) minmax(0,1fr);gap:30px;align-items:end;margin-bottom:30px}
+    .num{font:900 12px Manrope;letter-spacing:.2em;text-transform:uppercase;color:var(--accentText);margin-bottom:12px}
+    .section.lightPanel .num{color:#8b5a2b}
+    h2{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,5vw,72px);line-height:.9;letter-spacing:-.058em;color:inherit;text-wrap:balance}
+    .sectionIntro{color:inherit;opacity:.75;line-height:1.82;font-size:15px;max-width:720px;font-weight:400;letter-spacing:.018em}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .card{border:1px solid var(--cardLine);border-radius:var(--radius);background:var(--cardBg);box-shadow:0 18px 60px rgba(0,0,0,.12);overflow:hidden;position:relative;transition:.28s ease;color:inherit}
+    .section.lightPanel .card{background:linear-gradient(145deg,rgba(255,255,255,.94),rgba(255,248,237,.82));border-color:rgba(82,54,34,.16);box-shadow:0 20px 55px rgba(75,51,34,.08);color:#1d1712}
+    html[data-theme="dark"] .section.lightPanel .card{background:var(--cardBg);color:var(--text);border-color:var(--cardLine)}
+    .card:hover{transform:translateY(-6px);border-color:rgba(199,154,85,.45)}
+    .cardPad{padding:24px}.card h3{font-size:20px;letter-spacing:-.018em;margin-bottom:10px;color:inherit;font-weight:800}.card p,.card li{font-size:14px;line-height:1.72;color:inherit;opacity:.76;font-weight:400;letter-spacing:.018em}.card ul{padding-left:18px;margin-top:10px}
+    .hoverIcon{width:42px;height:42px;border-radius:15px;display:grid;place-items:center;margin-bottom:18px;background:linear-gradient(135deg,rgba(199,154,85,.28),rgba(199,154,85,.08));border:1px solid rgba(199,154,85,.22);transition:.35s ease}.hoverIcon svg{width:22px;height:22px;stroke:var(--gold2)}.section.lightPanel .hoverIcon svg{stroke:#7a512d}.card:hover .hoverIcon{transform:translateX(8px) rotate(-7deg) scale(1.05);box-shadow:0 16px 36px rgba(199,154,85,.18)}
+
+    .plotCard .spec{display:grid;grid-template-columns:1fr auto;gap:20px;padding:13px 0;border-bottom:1px solid rgba(82,54,34,.16)}.spec span{color:inherit;opacity:.7;font-size:13px}.spec b{font-size:14px;text-align:right;color:inherit}
+    .siteDiagram{min-height:420px;position:relative;padding:24px;background:linear-gradient(145deg,rgba(199,154,85,.18),rgba(255,255,255,.08))}.road{position:absolute;display:grid;place-items:center;border-radius:16px;background:linear-gradient(135deg,#d4c5ad,#f7edda);color:#2b2118;font:900 12px Manrope;letter-spacing:.08em;box-shadow:inset 0 0 0 1px rgba(65,44,27,.22)}.road.front{left:28px;right:28px;bottom:28px;height:60px}.road.back{left:28px;right:110px;top:28px;height:48px}.road.right{right:28px;top:28px;bottom:98px;width:60px;writing-mode:vertical-rl}.parent{position:absolute;left:62px;right:104px;top:90px;bottom:98px;border:2px solid rgba(199,154,85,.56);border-radius:10px;display:grid;grid-template-columns:30fr 30fr 39fr;overflow:hidden;background:rgba(0,0,0,.08)}.plot{display:flex;align-items:center;justify-content:center;text-align:center;border-right:1px solid rgba(82,54,34,.16);color:inherit;font-weight:800}.plot:last-child{border-right:0;background:linear-gradient(135deg,rgba(199,154,85,.38),rgba(103,141,88,.16))}.plot small{display:block;color:inherit;opacity:.72;font-weight:500;margin-top:6px;line-height:1.45}
+
+    .floorCard{min-height:405px;display:flex;flex-direction:column;justify-content:flex-end;background-size:cover;background-position:center;isolation:isolate}.floorCard::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(5,4,3,.9) 0%,rgba(5,4,3,.52) 45%,rgba(5,4,3,.12) 100%);z-index:-1}.floorCard::after{content:"";position:absolute;inset:0;border-radius:var(--radius);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);pointer-events:none}.floorCard .tag{display:inline-flex;width:max-content;margin-bottom:12px;color:#160f08;background:linear-gradient(135deg,#e3bc7a,#a77842);font:900 11px Manrope;text-transform:uppercase;letter-spacing:.1em;border-radius:999px;padding:7px 10px}.floorCard h3{font-size:27px;color:#fff}.floorCard p{color:rgba(255,248,235,.84);opacity:1}
+    .imageBand{height:205px;background-size:cover;background-position:center;position:relative}.imageBand::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.5),transparent)}
+    .check{display:flex;gap:12px;align-items:flex-start;padding:13px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(130,90,55,.16);margin-top:10px;color:inherit;opacity:.84;line-height:1.58;font-size:14px}.tick{width:23px;height:23px;flex:0 0 23px;border-radius:50%;display:grid;place-items:center;background:rgba(103,141,88,.16);color:#6ea15e;border:1px solid rgba(103,141,88,.34);font-size:12px;font-weight:900}.question{display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:start}.qnum{width:42px;height:42px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,#e3bc7a,#7d542d);color:#160f08;font:900 14px Manrope}.question b{display:block;margin-bottom:7px;color:inherit;font-size:16px}.question span{color:inherit;opacity:.74;font-size:14px;line-height:1.65}.phase strong{display:block;color:var(--accentText);font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px}.phase h3{font-size:20px}.reveal{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}.reveal.show{opacity:1;transform:translateY(0)}
+
+    /* Targeted V6 fixes: question cards, numbering, and dropdown visibility */
+    #questions.section{padding:108px 0 116px;}
+    #questions .grid2{gap:24px 28px;align-items:stretch;}
+    #questions .sectionHead{margin-bottom:34px;}
+    #questions .card.question{overflow:visible;min-height:124px;padding:24px 30px 24px 26px;display:grid;grid-template-columns:66px 1fr;gap:20px;align-items:center;border-radius:30px;}
+    #questions .qnum{width:56px;height:56px;border-radius:20px;margin:0;box-shadow:0 12px 24px rgba(116,75,37,.18);font-size:15px;letter-spacing:.06em;}
+    #questions .question b{font-size:18px;line-height:1.25;letter-spacing:-.015em;margin-bottom:8px;}
+    #questions .question span{font-size:15px;line-height:1.75;opacity:.82;}
+    .toneDropdown{z-index:999;}
+    @media(max-width:760px){#questions .card.question{grid-template-columns:58px 1fr;padding:22px 20px;min-height:auto}#questions .qnum{width:50px;height:50px}}
+
+    .footer{padding:42px 0 62px;text-align:center;color:var(--muted);font-size:13px}.floatingTools{position:fixed;right:18px;bottom:18px;z-index:70;display:flex;gap:10px}.floatingTools button{border:1px solid var(--cardLine);background:var(--navBg);color:var(--text);backdrop-filter:blur(14px);padding:12px 14px;border-radius:15px;font:800 12px Manrope;cursor:pointer}.floatingTools button:hover{background:rgba(199,154,85,.22)}
+    @media(max-width:980px){.links a{display:none}.heroContent,.sectionHead,.grid2{grid-template-columns:1fr}.grid3,.grid4{grid-template-columns:1fr 1fr}.heroPanel{max-width:520px}.hero{padding-top:115px}.section{padding:64px 0}}
+    @media(max-width:650px){.wrap,.nav{width:min(100% - 26px,1220px)}.grid3,.grid4{grid-template-columns:1fr}.heroContent{gap:22px}h1{font-size:54px}.heroPanel{display:none}.nav{border-radius:18px}.brand span{display:none}.toneTrigger{padding:10px}.siteDiagram{min-height:330px}.parent{left:42px;right:80px}.road.front{left:18px;right:18px}.road.back{left:18px;right:84px}.road.right{right:18px}.floatingTools{display:none}}
+    @media print{.nav,.floatingTools{display:none}.hero{min-height:auto;padding:30px 0}.heroBg,.cloudFrame,.hero::before,.heroFrame{display:none}body{background:white;color:#111}.section,.section.lightPanel,.section.darkPanel{background:white;color:#111}.card{box-shadow:none;background:white!important;border:1px solid #ddd;break-inside:avoid;color:#111!important}.wrap{width:100%}h1,h2,.card h3,.spec b,.question b{color:#111}.lead,.sectionIntro,.card p,.card li,.spec span,.question span,.check{color:#333;opacity:1}.heroPanel{display:none}}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="#top" class="brand"><span class="logoMark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19 12 4l8 15H4Z" stroke-width="1.7"/><path d="M12 9v5l4 5" stroke-width="1.7"/></svg></span><span>Kohsar Plaza Brief</span></a>
+    <div class="links">
+      <a href="#plot">Plot</a><a href="#program">Floors</a><a href="#requirements">Design</a><a href="#deliverables">Deliverables</a><a href="#questions">Questions</a>
+      <div class="toneMenu" id="toneMenu">
+        <button class="toneTrigger" id="toneTrigger" type="button" aria-haspopup="true" aria-expanded="false">Tone ▾</button>
+        <div class="toneDropdown" role="menu" aria-label="Theme options">
+          <button type="button" class="toneOption" data-theme-option="duo">Two tone <small>default</small></button>
+          <button type="button" class="toneOption" data-theme-option="dark">Dark <small>black / brown</small></button>
+          <button type="button" class="toneOption" data-theme-option="light">Light <small>cream / brown</small></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="heroBg" id="heroBg"></div><div class="heroFrame"></div><div class="cloudFrame"></div>
+    <div class="wrap heroContent">
+      <div class="reveal">
+        <div class="kicker">Architect Meeting Web Brief</div>
+        <h1>Kohsar Commercial <span>Plaza Vision</span></h1>
+        <p class="lead">A premium, heat-resistant, future-ready commercial building in Kohsar, Hyderabad — planned for a two-floor bank, café, gym, full rooftop solar, concealed services, and marketing-ready architectural presentation material.</p>
+        <div class="heroActions"><a class="btn primary" href="#questions">Start meeting checklist →</a><a class="btn secondary" href="#deliverables">Required deliverables</a></div>
+      </div>
+      <aside class="heroPanel reveal">
+        <div class="panelTitle">Project Snapshot</div>
+        <div class="snapGrid">
+          <div class="snap"><b>39′</b><span>Frontage on 100 ft road</span></div>
+          <div class="snap"><b>60′</b><span>Depth along side street</span></div>
+          <div class="snap"><b>260</b><span>Square yards</span></div>
+          <div class="snap"><b>G+3</b><span>Commercial floors</span></div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section id="plot" class="section lightPanel">
+      <div class="wrap reveal">
+        <div class="sectionHead"><div><div class="num">01 / Plot understanding</div><h2>Start with the exact geometry.</h2></div><p class="sectionIntro">This project must be designed around the real proportion: 39 ft frontage and 60 ft depth. The front is premium, but the side and back are also valuable because the plot is three-side open.</p></div>
+        <div class="grid2">
+          <div class="card plotCard"><div class="cardPad">
+            <div class="spec"><span>Location</span><b>Kohsar, Hyderabad, Sindh</b></div><div class="spec"><span>Subject plot</span><b>Plot 3</b></div><div class="spec"><span>Plot size</span><b>39 ft × 60 ft</b></div><div class="spec"><span>Total area</span><b>2,340 sq. ft. / 260 sq. yd.</b></div><div class="spec"><span>Parent plot</span><b>660 sq. yd. subdivided into 3 plots</b></div><div class="spec"><span>Front road</span><b>100 ft wide road</b></div><div class="spec"><span>Right side street</span><b>30 ft street</b></div><div class="spec"><span>Back street</span><b>30 ft street</b></div><div class="spec"><span>Left side</span><b>Adjacent Plot 2 / future development</b></div>
+          </div></div>
+          <div class="card siteDiagram"><div class="road back">30 FT BACK STREET</div><div class="road right">30 FT RIGHT STREET</div><div class="parent"><div class="plot"><div>Plot 1<small>30′ × 60′<br>200 sq yd</small></div></div><div class="plot"><div>Plot 2<small>30′ × 60′<br>200 sq yd</small></div></div><div class="plot"><div>Plot 3<small>39′ × 60′<br>260 sq yd</small></div></div></div><div class="road front">100 FT FRONT ROAD</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="program" class="section darkPanel">
+      <div class="wrap reveal">
+        <div class="sectionHead"><div><div class="num">02 / Floor program</div><h2>Separate identities, one premium address.</h2></div><p class="sectionIntro">Each floor needs its own function, access logic, and marketable identity, while the building remains one clean and controlled commercial property.</p></div>
+        <div class="grid4">
+          <div class="card floorCard" style="background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=80')"><div class="cardPad"><span class="tag">Ground</span><h3>Bank public floor</h3><p>Front/corner entrance, ATM, banking hall, teller counters, waiting, security, manager office, strong room, and controlled staff access.</p></div></div>
+          <div class="card floorCard" style="background-image:url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80')"><div class="cardPad"><span class="tag">First</span><h3>Bank operations</h3><p>Internal bank connection from ground floor, offices, records, meeting room, staff support, and secure operational zones.</p></div></div>
+          <div class="card floorCard" style="background-image:url('https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=900&q=80')"><div class="cardPad"><span class="tag">Second</span><h3>Café floor</h3><p>Independent access from concealed rear/right-side lobby, café shell planning, washrooms, service, exhaust and branding frontage.</p></div></div>
+          <div class="card floorCard" style="background-image:url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80')"><div class="cardPad"><span class="tag">Third</span><h3>Gym floor</h3><p>Independent lift/stair access, ventilation, washrooms, AC outdoor zones, and clean signage without disturbing the bank.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="requirements" class="section lightPanel">
+      <div class="wrap reveal">
+        <div class="sectionHead"><div><div class="num">03 / Design direction</div><h2>Luxury must perform in heat.</h2></div><p class="sectionIntro">The elevation should look premium, but its real success depends on insulation, low glass, service concealment, green shading, and long-term maintenance simplicity.</p></div>
+        <div class="grid3">
+          <div class="card"><div class="imageBand" style="background-image:url('./greenfacade.png')"></div><div class="cardPad"><div class="hoverIcon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 8h14M7 16h10" stroke-width="1.8"/></svg></div><h3>Heat-resistant shell</h3><p>Insulated walls, roof insulation, minimal glass, recessed openings, light exterior materials, and controlled shading for Hyderabad heat.</p></div></div>
+          <div class="card"><div class="imageBand" style="background-image:url('./greenfacade.png')"></div><div class="cardPad"><div class="hoverIcon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2v20M4 8c5 0 8 4 8 4s3-4 8-4M5 16c4 0 7 3 7 3s3-3 7-3" stroke-width="1.8"/></svg></div><h3>Green façade strategy</h3><p>Use trellis greenery, planter bands, drip irrigation, waterproofing and drainage without blocking AC outdoor airflow.</p></div></div>
+          <div class="card"><div class="imageBand" style="background-image:url('./solar_roof.png')"></div><div class="cardPad"><div class="hoverIcon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 13h18M5 17h14M7 9h10M9 5h6" stroke-width="1.8"/></svg></div><h3>Full rooftop solar</h3><p>Plan the roof as a raised solar canopy from day one, with cleaning access, wind-load design, water tank coordination and net-metering readiness.</p></div></div>
+          <div class="card"><div class="cardPad"><div class="hoverIcon"><svg viewBox="0 0 24 24" fill="none"><path d="M8 4h8v16H8zM4 8h4M16 8h4M4 16h4M16 16h4" stroke-width="1.8"/></svg></div><h3>Tenant AC planning</h3><p>No central HVAC. Tenants install their own AC systems, but the architect must hide outdoor units in louvered side/back service zones.</p></div></div>
+          <div class="card"><div class="cardPad"><div class="hoverIcon"><svg viewBox="0 0 24 24" fill="none"><path d="M6 21V3h12v18M9 8h6M9 12h6M9 16h6" stroke-width="1.8"/></svg></div><h3>Secure circulation</h3><p>Bank public entry from front only. Café and gym visitors use a concealed lobby, lift and staircase from the rear/right side.</p></div></div>
+          <div class="card"><div class="cardPad"><div class="hoverIcon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 5 7v6c0 4 3 7 7 8 4-1 7-4 7-8V7l-7-4Z" stroke-width="1.8"/></svg></div><h3>Bank security</h3><p>Strong room, ATM, public/private zoning, secure staff access, CCTV, and controlled internal connection between ground and first floor.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="deliverables" class="section darkPanel">
+      <div class="wrap reveal">
+        <div class="sectionHead"><div><div class="num">04 / Required deliverables</div><h2>Ask for a complete architectural package.</h2></div><p class="sectionIntro">The architect should quote clear deliverables for approvals, technical execution, interior design and marketing material.</p></div>
+        <div class="grid2">
+          <div class="card"><div class="cardPad"><h3>Architectural & technical drawings</h3><div class="check"><span class="tick">✓</span>Complete AutoCAD site plan with subdivision, roads, setbacks and orientation.</div><div class="check"><span class="tick">✓</span>Basement feasibility plan, if parking/storage/services are possible and approvable.</div><div class="check"><span class="tick">✓</span>Ground floor and first floor bank plans with secure internal access.</div><div class="check"><span class="tick">✓</span>Second café floor, third gym floor and rooftop solar/service plan.</div><div class="check"><span class="tick">✓</span>Front, right-side and back elevations respecting 39 ft frontage and 60 ft depth.</div><div class="check"><span class="tick">✓</span>Sections showing floor heights, lift/stair core, façade depth, solar canopy and service shafts.</div></div></div>
+          <div class="card"><div class="cardPad"><h3>MEP, visuals & marketing assets</h3><div class="check"><span class="tick">✓</span>Electrical drawings: main panel, tenant sub-meters, generator, solar, earthing and DBs.</div><div class="check"><span class="tick">✓</span>Plumbing and sanitary drainage drawings including washrooms, roof drainage and café/service drainage.</div><div class="check"><span class="tick">✓</span>Fire safety drawings: exits, alarm, extinguishers, hose reel/hydrant, smoke detection and emergency lights.</div><div class="check"><span class="tick">✓</span>AC-ready service design: outdoor unit locations, louver screens, sleeves, drains and isolator points.</div><div class="check"><span class="tick">✓</span>Interior concepts for bank, café, gym, lobby, reception zones and washrooms.</div><div class="check"><span class="tick">✓</span>High-end renders, walkthrough videos and a marketing prospectus for bank/tenant pitching.</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="questions" class="section lightPanel">
+      <div class="wrap reveal">
+        <div class="sectionHead"><div><div class="num">05 / Meeting questions</div><h2>Keep the conversation focused.</h2></div><p class="sectionIntro">Use these questions one by one so the meeting reaches decisions instead of becoming a general discussion.</p></div>
+        <div class="grid2">
+          <div class="card question"><div class="qnum">01</div><div><b>What are the exact bylaws for this plot?</b><span>Confirm setbacks, ground coverage, height, parking, fire exit, basement permission, signage and solar canopy allowance.</span></div></div>
+          <div class="card question"><div class="qnum">02</div><div><b>Can the project legally support G+3 plus service roof?</b><span>Confirm rooftop solar, stair head, lift machine room, water tank and service structures.</span></div></div>
+          <div class="card question"><div class="qnum">03</div><div><b>Can we create a secure two-floor bank?</b><span>Bank customers should enter from front only while café/gym use separate rear/right-side access.</span></div></div>
+          <div class="card question"><div class="qnum">04</div><div><b>Where should the single lift and staircase core go?</b><span>Save rentable area while keeping bank security intact and giving independent access to upper floors.</span></div></div>
+          <div class="card question"><div class="qnum">05</div><div><b>Is basement feasible or worth it?</b><span>Discuss approval, waterproofing, parking, services, generator or storage use.</span></div></div>
+          <div class="card question"><div class="qnum">06</div><div><b>How will split AC outdoor units be concealed?</b><span>Require a clean louvered service band on side/back so the elevation stays premium.</span></div></div>
+          <div class="card question"><div class="qnum">07</div><div><b>What insulation system is best for Hyderabad?</b><span>Discuss wall thickness, roof insulation, shading devices, low-glass openings and façade materials.</span></div></div>
+          <div class="card question"><div class="qnum">08</div><div><b>What will be included in the architect's fee?</b><span>Confirm drawings, renders, video, interior design, MEP coordination, BOQ, approvals support and timelines.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section darkPanel">
+      <div class="wrap reveal">
+        <div class="sectionHead"><div><div class="num">06 / Suggested workflow</div><h2>Work in phases, not guesswork.</h2></div><p class="sectionIntro">Ask the architect to move from feasibility to planning, then elevation, then technical drawings and finally marketing material.</p></div>
+        <div class="grid4">
+          <div class="card phase"><div class="cardPad"><strong>Phase 01</strong><h3>Feasibility</h3><p>Site verification, bylaws, basement possibility and G+3 / rooftop solar allowance.</p></div></div>
+          <div class="card phase"><div class="cardPad"><strong>Phase 02</strong><h3>Planning</h3><p>Circulation, bank security, café/gym access, floor layouts, service zones and parking/drop-off.</p></div></div>
+          <div class="card phase"><div class="cardPad"><strong>Phase 03</strong><h3>Elevation</h3><p>Low-glass façade, green strategy, solar canopy, signage zones and AC service concealment.</p></div></div>
+          <div class="card phase"><div class="cardPad"><strong>Phase 04</strong><h3>Technical + marketing</h3><p>MEP, fire, structural coordination, interiors, renders, videos and prospectus.</p></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="floatingTools"><button onclick="window.print()">Print / Save PDF</button><button onclick="location.href='#questions'">Questions</button></div>
+  <footer class="footer wrap">Kohsar Commercial Plaza — Architect Meeting Brief | Concept document for discussion only.</footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('show'); } });
+    },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    const heroBg = document.getElementById('heroBg');
+    if(heroBg){
+      window.addEventListener('scroll',()=>{
+        const y = Math.min(window.scrollY, 720);
+        heroBg.style.transform = `scale(${1.08 - y/9500}) translateY(${y*0.035}px)`;
+        heroBg.style.filter = `saturate(.9) contrast(${.98 + y/5200}) brightness(${.76 - y/8000})`;
+      },{passive:true});
+    }
+
+    const root = document.documentElement;
+    const toneMenu = document.getElementById('toneMenu');
+    const toneTrigger = document.getElementById('toneTrigger');
+    const toneOptions = Array.from(document.querySelectorAll('[data-theme-option]'));
+    const labels = {duo:'Two tone', dark:'Dark tone', light:'Light tone'};
+
+    function setTheme(theme){
+      if(!labels[theme]) theme = 'duo';
+      root.setAttribute('data-theme', theme);
+      try { localStorage.setItem('kohsarTheme', theme); } catch(e) {}
+      if(toneTrigger){ toneTrigger.textContent = labels[theme] + ' ▾'; }
+      toneOptions.forEach(option=>option.classList.toggle('active', option.dataset.themeOption === theme));
+    }
+
+    function closeToneMenu(){
+      if(!toneMenu || !toneTrigger) return;
+      toneMenu.classList.remove('is-open');
+      toneTrigger.setAttribute('aria-expanded','false');
+    }
+
+    setTheme((()=>{ try { return localStorage.getItem('kohsarTheme'); } catch(e) { return null; } })() || root.getAttribute('data-theme') || 'duo');
+
+    if(toneTrigger && toneMenu){
+      toneTrigger.addEventListener('click',(event)=>{
+        event.preventDefault();
+        event.stopPropagation();
+        const isOpen = toneMenu.classList.toggle('is-open');
+        toneTrigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+    }
+
+    toneOptions.forEach(option=>{
+      option.addEventListener('click',(event)=>{
+        event.preventDefault();
+        event.stopPropagation();
+        setTheme(option.dataset.themeOption);
+        closeToneMenu();
+      });
+    });
+
+    document.addEventListener('click',(event)=>{
+      if(toneMenu && !toneMenu.contains(event.target)) closeToneMenu();
+    });
+    document.addEventListener('keydown',(event)=>{
+      if(event.key === 'Escape') closeToneMenu();
+    });
+  </script>
+</body>
+</html>
